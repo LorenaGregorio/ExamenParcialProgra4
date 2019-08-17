@@ -9,7 +9,7 @@ namespace ModelosExamenParcialProgra4.Clientes
     public class ClientesModel
     {
         public int IdCliente { get; set; }
-        public string Nombres { get; set; }
+        public string Nombres { get; set; } 
         public string Apellidos { get; set; }
         public string Direccion { get; set; }
         public string Nit { get; set; }
