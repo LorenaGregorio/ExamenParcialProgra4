@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+        QueryDataGrid con = new QueryDataGrid();
         public Form1()
         {
             InitializeComponent();
@@ -25,27 +26,12 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             try
-            {
-                ClientesModel clientemodel = new ClientesModel();
-                clientemodel.IdCliente = 1;
-                clientemodel.Nombres = "Carmela Ines";
-                clientemodel.Apellidos = "Lopez Gonzalez";
-                clientemodel.Direccion = "Ciudad";
-                clientemodel.Nit = "12582-K";
-                clientemodel.NumerodePedido = 5;
-                clientemodel.DescripcionPedido = "Te frío";
-                clientemodel.FormadePago = "Contado";
+           {
+                ClientesModel cliente = new ClientesModel();
+                ClientesReader reader = new ClientesReader(QuerysRepo.TipoQuery.Todos, cliente);
+         
 
-                ClientesReader reader = new ClientesReader(QuerysRepo.TipoQuery.ConFiltros, clientemodel);
-                Collection<ClientesModel> clientes = reader.Execute();
-
-                foreach (ClientesModel c  in clientes)
-                {
-
-                    ActualizarGrid(this.dataGridView1, "SELECT * FROM cafeteriadb.clientetbl");
-
-                }
-
+                    con.ActualizarGrid(this.dataGridView1, "SELECT * FROM cafeteriadb.clientetbl");
 
 
             }
@@ -56,10 +42,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void ActualizarGrid(DataGridView dataGridView1, string v)
-        {
-           
-        }
+      
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
